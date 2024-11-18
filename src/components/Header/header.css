@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #001628;
+    color: white;
+  }
+  
+  .logo h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .user-info{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
