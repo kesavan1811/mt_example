@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Flex } from "antd";
+import { Button, Checkbox, Form, Input, Flex, notification } from "antd";
 import "./login.css";
 import { useAuth } from "../../Auth/AuthContext";
 
@@ -28,16 +28,10 @@ const Login = () => {
       navigate("/dashboard");
     } else {
       setError("Invalid credentials, please try again.");
-    }
-  };
-
-  // Handle form submission
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (username === "eve.holt@reqres.in" && password === "cityslicka") {
-      navigate("/dashboard");
-    } else {
-      setError("Invalid credentials, please try again.");
+      notification.error({
+        message: "Login failed",
+        description: "Invalid credentials, please try again."
+      });
     }
   };
 
