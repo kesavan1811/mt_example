@@ -5,9 +5,9 @@ import {
   UnorderedListOutlined,
   LoadingOutlined
 } from "@ant-design/icons";
-import "./userslist.css";
-import CardLsit from "../../components/Card/CardList";
-import ModalUI from "../../components/Modal/ModalUI";
+import "./dashboard.css";
+import CardLsit from "../../components/Card/CardList.js";
+import ModalUI from "../../components/Modal/ModalUI.js";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addUser,
@@ -15,9 +15,8 @@ import {
   fetchUsers,
   updateUser
 } from "../../actions/userAction.js";
-import { useAuth } from "../../Auth/AuthContext.js";
 
-const UsersList = () => {
+const Dashboard = () => {
   const [data, setData] = useState(null);
   const [isTableView, setIsTableView] = useState("table");
   const [filteredData, setFilteredData] = useState([]);
@@ -30,7 +29,9 @@ const UsersList = () => {
 
   const { Search } = Input;
 
-  const { user, logout } = useAuth();
+  useEffect(() => {
+    document.title = "Dashboard";
+  }, []);
 
   const columns = [
     {
@@ -179,7 +180,13 @@ const UsersList = () => {
   return (
     <div style={{ padding: "20px" }}>
       <section className="filter-container">
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "wrap"
+          }}
+        >
           <h1>Users</h1>
           <div style={{ display: "flex", gap: "10px" }}>
             <Search
@@ -213,7 +220,11 @@ const UsersList = () => {
         </div>
       </section>
       {isTableView === "table"
-        ? <Table columns={columns} dataSource={filteredData} />
+        ? <Table
+            columns={columns}
+            dataSource={filteredData}
+            scroll={{ x: 800 }}
+          />
         : <div className="cards-container">
             {filteredData &&
               filteredData.map(item =>
@@ -236,4 +247,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList;
+export default Dashboard;

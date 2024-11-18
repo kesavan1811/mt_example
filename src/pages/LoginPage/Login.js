@@ -13,12 +13,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [form] = Form.useForm();
-  const [clientReady, setClientReady] = useState(false);
 
   const { login } = useAuth();
 
   useEffect(() => {
-    setClientReady(true);
+    document.title = "Login";
   }, []);
 
   const onFinish = values => {
